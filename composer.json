@@ -1,0 +1,15 @@
+{
+    "name": "generalredneck/ga-referrer-spam-filters",
+    "description": "Oath Application that sets up referrer spam filters for your account.",
+    "type": "project",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Allan Chappell",
+            "email": "generalredneck@gmail.com"
+        }
+    ],
+    "require": {
+         "google/apiclient": "~1.0"
+    }
+}
