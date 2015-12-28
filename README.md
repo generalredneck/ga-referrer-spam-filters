@@ -109,9 +109,10 @@ web properties, and/or views you want to work with.
 
 The global switches are:
 
-* `-e, --service-email[=SERVICE-EMAIL]` - The service email to use to connect to
-* `-Google Analytics k, --key-location[=KEY-LOCATION]` - The p12 key file used
-* `-to connect to Google Analytics
+* `-e, --service-email[=SERVICE-EMAIL]` - The service email 
+  to use to connect to Google Analytics
+* `-k, --key-location[=KEY-LOCATION]` - The p12 key file used 
+  to connect to Google Analytics
 
 Use `garefspam` to get a list of commands you can run using this tool and the
 expected switches. An example of this output is as follows:
