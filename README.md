@@ -77,7 +77,8 @@ an adaptation of [Google Developers Documentation][setup-1]
 
 There are 2 methods of configuration
 
-* config.yml command line switches
+* config.yml
+* command line switches
 
 ### Config.yml
 
