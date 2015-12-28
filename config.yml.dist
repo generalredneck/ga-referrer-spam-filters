@@ -1,10 +1,22 @@
+# If you don't configure this it defaults to ./client_secrets.p12
 key-location: ./client_secrets.p12
 service-email: ga-referral-spam@your-app-service-domain.iam.gserviceaccount.com
 
-# Configure the items below after you get your key and service-email setup
+# Configure the items below after you get your key and service-email setup.
+
+# If you don't configure this it defaults to ./spammers.txt
 domain-list-location: ./spammers.txt
 
 # If you have your key and service-email, use the list* commands to get these.
+
+# If you only have 1 account associated with the service-email above, you don't
+# need ga-account-id
 ga-account-id: 12345678
+
+# If you only have 1 web property id associated with the service-email account
+# and the google analytics account selected above, you don't need ga-property-id
 ga-property-id: UA-12345678-1
+
+# If you only have 1 google analytics view associated with the account and web
+# property, you will not need to configure ga-view-id
 ga-view-id: 87654321
