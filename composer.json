@@ -9,7 +9,15 @@
             "email": "generalredneck@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "GeneralRedneck\\GaReferrerSpamFilters\\": "src"
+        }
+    },
     "require": {
-         "google/apiclient": "~1.0"
+        "google/apiclient": "~1.0",
+        "symfony/console": "~2.8",
+        "symfony/config": "~2.8",
+        "symfony/yaml": "~2.8"
     }
 }
