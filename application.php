@@ -3,6 +3,7 @@
 require __DIR__.'/vendor/autoload.php';
 
 use GeneralRedneck\GaReferrerSpamFilters\Command\ListAccountsCommand;
+use GeneralRedneck\GaReferrerSpamFilters\Command\UpdateSpamListCommand;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputOption;
@@ -22,6 +23,9 @@ catch(\InvalidArgumentException $e) {
 
 if (empty($configValues['key-location'])) {
   $configValues['key-location'] = __DIR__ . DIRECTORY_SEPARATOR . 'client_secrets.p12';
+}
+if (empty($configValues['domain-list-location'])) {
+  $configValues['domain-list-location'] = __DIR__ . DIRECTORY_SEPARATOR . 'spammers.txt';
 }
 
 $application->config = $configValues;
@@ -44,4 +48,5 @@ $application->getDefinition()->addOptions(array(
   )
 ));
 $application->add(new ListAccountsCommand());
+$application->add(new UpdateSpamListCommand());
 $application->run();
