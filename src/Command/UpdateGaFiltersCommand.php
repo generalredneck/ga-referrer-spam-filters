@@ -44,10 +44,10 @@ class UpdateGaFiltersCommand extends Command
   protected function execute(InputInterface $input, OutputInterface $output) {
     $service_email = $input->getOption('service-email');
     $key_location = $input->getOption('key-location');
-    $domain_list_location = $input->getOption('domain-list-location');
     $ga_account_id = $input->getOption('ga-account-id');
     $ga_property_id = $input->getOption('ga-property-id');
     $ga_view_id = $input->getOption('ga-view-id');
+    $domain_list_location = $input->getOption('domain-list-location');
     $domain_list_location = empty($domain_list_location) ? $this->getApplication()->config['domain-list-location'] : $domain_list_location;
 
     if (empty($service_email)) {
@@ -149,6 +149,11 @@ class UpdateGaFiltersCommand extends Command
           $filter->setExcludeDetails($details);
           $filterResult = $service->getGaService()->management_filters->insert($ga_account_id, $filter);
           sleep(1);
+
+          // TODO: we need to check to see if the filters are linked with the
+          // specified view cause we may already have the filters but they just
+          // not linked up.
+
           // Construct the filter reference.
           $filterRef = new \Google_Service_Analytics_FilterRef();
           $filterRef->setAccountId($ga_account_id);
@@ -162,6 +167,8 @@ class UpdateGaFiltersCommand extends Command
         }
         else {
           $filter = $filters[$name];
+          // TODO: we need to check to see what other views we are updateing by
+          // updating this filter.
           if ($filter->getExcludeDetails()->getExpressionValue() != $details->getExpressionValue()) {
             $filter->setType("EXCLUDE");
             $filter->setExcludeDetails($details);

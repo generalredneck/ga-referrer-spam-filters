@@ -3,8 +3,10 @@
 require __DIR__.'/vendor/autoload.php';
 
 use GeneralRedneck\GaReferrerSpamFilters\Command\ListAccountsCommand;
-use GeneralRedneck\GaReferrerSpamFilters\Command\UpdateSpamListCommand;
+use GeneralRedneck\GaReferrerSpamFilters\Command\ListPropertiesCommand;
+use GeneralRedneck\GaReferrerSpamFilters\Command\ListViewsCommand;
 use GeneralRedneck\GaReferrerSpamFilters\Command\UpdateGaFiltersCommand;
+use GeneralRedneck\GaReferrerSpamFilters\Command\UpdateSpamListCommand;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputOption;
@@ -51,4 +53,6 @@ $application->getDefinition()->addOptions(array(
 $application->add(new ListAccountsCommand());
 $application->add(new UpdateSpamListCommand());
 $application->add(new UpdateGaFiltersCommand());
+$application->add(new ListPropertiesCommand());
+$application->add(new ListViewsCommand());
 $application->run();

@@ -19,10 +19,21 @@ class ListAccountsCommand extends Command
 
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $service = new Service(
-      $input->getOption('service-email'),
-      $input->getOption('key-location')
-    );
+    $service_email = $input->getOption('service-email');
+    $key_location = $input->getOption('key-location');
+    if (empty($service_email)) {
+      $output->writeln('<error>A service-email must be configured.</error>');
+      return 1;
+    }
+    if (empty($key_location)) {
+      $output->writeln('<error>A key-location must be configured.</error>');
+      return 2;
+    }
+    if (!file_exists($key_location)) {
+      $output->writeln('<error>The file ' . $key_location . ' does not exist.');
+      return 3;
+    }
+    $service = new Service($service_email, $key_location);
     $accounts = $service->getGaAccounts();
     if (count($accounts->getItems()) > 0) {
       $table_data = array();
