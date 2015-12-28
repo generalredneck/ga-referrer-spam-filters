@@ -33,8 +33,6 @@ class Service {
       $this->client->setApplicationName("GA Referral Spam Filters");
       $this->analytics = new \Google_Service_Analytics($this->client);
 
-      var_dump(self::$key_file_location);
-      var_dump(self::$service_account_email);
       // Read the generated p12 key.
       $key = file_get_contents(self::$key_file_location);
       $cred = new \Google_Auth_AssertionCredentials(
@@ -49,5 +47,21 @@ class Service {
     }
 
     return $this->analytics;
+  }
+
+  public function getGaAccounts() {
+    return $this->getGaService()->management_accounts->listManagementAccounts();
+  }
+
+  public function getGaProperties($account_id) {
+   return $this->getGaService()->management_webproperties->listManagementWebproperties($account_id);
+  }
+
+  public function getGaViews($account_id, $property_id) {
+    return $this->getGaService()->management_profiles->listManagementProfiles($account_id, $property_id);
+  }
+
+  public function getGaFilters($account_id) {
+    return $this->getGaService()->management_filters->listManagementFilters($account_id);
   }
 }

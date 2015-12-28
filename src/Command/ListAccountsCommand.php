@@ -23,8 +23,7 @@ class ListAccountsCommand extends Command
       $input->getOption('service-email'),
       $input->getOption('key-location')
     );
-    $analytics = $service->getGaService();
-    $accounts = $analytics->management_accounts->listManagementAccounts();
+    $accounts = $service->getGaAccounts();
     if (count($accounts->getItems()) > 0) {
       $table_data = array();
       foreach ($accounts as $account) {
