@@ -194,3 +194,9 @@ A sample session may look like so:
 ## FAQ
 
 To come.
+
+## Credit
+
+The source of the referral spam domains blacklist is the [desbma/referer-spam-domains-blacklist][credit-1] project. Ultimatly that project is what lead me to the solution I created and should totally be a part of your infrastructure to help keep the referral bots out of your analytics and off your server period.
+
+[credit-1]: https://github.com/desbma/referer-spam-domains-blacklist
