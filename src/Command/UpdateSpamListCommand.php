@@ -35,7 +35,10 @@ class UpdateSpamListCommand extends Command
     if (empty($local_list)) {
       $local_list = array();
     }
-    $remote_list = file('https://raw.githubusercontent.com/desbma/referer-spam-domains-blacklist/master/spammers.txt');
+    // Get a copy of the list that is pulled own from
+    // https://raw.githubusercontent.com/desbma/referer-spam-domains-blacklist/master/spammers.txt
+    // to limit hot-linking to github and not require git to be installed.
+    $remote_list = file('http://generalredneck.com/sites/default/files/static-content/garefspam/spammers.txt');
     $table = new Table($output);
     $table->setHeaders(array('Status', 'Domain'));
     $removed = array_diff($local_list, $remote_list);
