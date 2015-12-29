@@ -14,9 +14,20 @@ commands that can be used to help you.
 ## Installation
 
 This project requires PHP 5. It hasn't been tested with PHP 7. It has been
-tested on Windows 10.
+tested on Windows 10 and Ubuntu 14.04.3 LTS.
 
 ### Manual Install
+
+To do a manual installation from one of the prebuilt environments, simply
+navigate to the [Stable Downloads Directory][install-1] and download the latest
+stable version. After that unzip the file where ever you would like to store it
+to run later.
+
+You can also grab the latest development builds from the 
+[Development Downloads Directory][install-2].
+
+[install-1]: http://generalredneck.com/downloads/garefspam-stable
+[install-2]: http://generalredneck.com/downloads/garefspam-dev
 
 ### Composer
 
@@ -159,6 +170,13 @@ Once configured, you will need to run at the very least the following 2 commands
 
     $ garefspam updatespamlist 
     $ garefspam updatefilters
+
+**Note:** If you are running windows, use `garefspam.bat` instead unless you are
+running bash on your system. The commands and switches are all the same as
+above. For example:
+    
+    garefspam.bat updatespamlist
+    garefspam.bat updatefilters --service-email ga-referral-spam@iam.gserviceaccount.com
 
 A sample session may look like so:
 
