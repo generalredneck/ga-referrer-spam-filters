@@ -51,15 +51,15 @@ class UpdateGaFiltersCommand extends Command
     $domain_list_location = empty($domain_list_location) ? $this->getApplication()->config['domain-list-location'] : $domain_list_location;
 
     if (empty($service_email)) {
-      $output->writeln('<error>A service-email must be configured.</error>');
+      $this->outputError($output, 'A service-email must be configured.');
       return 1;
     }
     if (empty($key_location)) {
-      $output->writeln('<error>A key-location must be configured.</error>');
+      $this->outputError($output, 'A key-location must be configured.');
       return 2;
     }
     if (!file_exists($key_location)) {
-      $output->writeln('<error>The file ' . $key_location . ' does not exist.');
+      $this->outputError($output, 'The file ' . $key_location . ' does not exist.');
       return 3;
     }
     $service = new Service(
@@ -78,7 +78,8 @@ class UpdateGaFiltersCommand extends Command
           $ga_account_id = $accounts[0]->getId();
         }
         else {
-          $output->writeln("<error>No Account configured and more than one account is associated with this service email. Configure an account id by passing --ga-account-id or modifying config.yml. See listaccounts for a full list of accounts.</error>");
+          $this->outputError($output, "No Account configured and more than one account is associated with this service email. Configure an account id by passing --ga-account-id or modifying config.yml. See listaccounts for a full list of accounts.");
+          return 4;
         }
       }
     }
@@ -94,7 +95,8 @@ class UpdateGaFiltersCommand extends Command
           $ga_property_id = $properties[0]->getId();
         }
         else {
-          $output->writeln("<error>No property id configured and more than one web property is associated with this service email and account id. Configure a web property id by passing --ga-property-id or modifying config.yml. See listproperties for a full list of web properties.</error>");
+          $this->outputError($output, "No property id configured and more than one web property is associated with this service email and account id. Configure a web property id by passing --ga-property-id or modifying config.yml. See listproperties for a full list of web properties.");
+          return 5;
         }
       }
     }
@@ -109,7 +111,8 @@ class UpdateGaFiltersCommand extends Command
           $ga_view_id = $views[0]->getId();
         }
         else {
-          $output->writeln("<error>No view id configured and more than one view is associated with this service email, account id, and property id. Configure a view id by passing --ga-view-id or modifying config.yml. See listviews for a full list of views.</error>");
+          $this->outputError($output, "No view id configured and more than one view is associated with this service email, account id, and property id. Configure a view id by passing --ga-view-id or modifying config.yml. See listviews for a full list of views.");
+          return 6;
         }
       }
     }
@@ -191,5 +194,11 @@ class UpdateGaFiltersCommand extends Command
       $regex .= $spammer;
       $charcount += $spammer_length;
     }
+  }
+  // TODO: split this out into a parent class and convert all errors over to it.
+  function outputError($output, $message, $title = 'Error') {
+    $errorMessages = array_merge(array('[ ' . $title . ' ]', ''), explode("\n", wordwrap($message, 75, "\n", true)));
+    $formattedBlock = $this->getHelper('formatter')->formatBlock($errorMessages, 'error', true);
+    $output->writeln($formattedBlock);
   }
 }

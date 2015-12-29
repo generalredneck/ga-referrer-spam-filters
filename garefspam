@@ -13,22 +13,21 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Yaml\Yaml;
 
 $application = new Application('GA Referrer Spam Filters', file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'version'));
-$configValues = array();
+$configValues = array(
+  'service-email' => '',
+  'key-location' => __DIR__ . DIRECTORY_SEPARATOR . 'client_secrets.p12',
+  'domain-list-location' => __DIR__ . DIRECTORY_SEPARATOR . 'spammers.txt',
+);
 $configDirectories = array(__DIR__);
 try {
   $locator = new FileLocator($configDirectories);
   $configFile = $locator->locate('config.yml', null, true);
-  $configValues = Yaml::parse(file_get_contents($configFile));
+  $configFileValues = Yaml::parse(file_get_contents($configFile));
+  // This may not be reached if the file doesn't exist.
+  $configValues = $configFileValues + $configValues;
 }
 catch(\InvalidArgumentException $e) {
   // File was not found.
-}
-
-if (empty($configValues['key-location'])) {
-  $configValues['key-location'] = __DIR__ . DIRECTORY_SEPARATOR . 'client_secrets.p12';
-}
-if (empty($configValues['domain-list-location'])) {
-  $configValues['domain-list-location'] = __DIR__ . DIRECTORY_SEPARATOR . 'spammers.txt';
 }
 
 $application->config = $configValues;
