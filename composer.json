@@ -3,7 +3,7 @@
     "description": "A quick script to set and update Google Analytics filters to block referral spam bots from using the measurement protocol system to add false analytics.",
     "type": "project",
     "license": "GPL-2.0",
-    "bin": [ "garefspam" ],
+    "bin": [ "garefspam", "garefspam.bat" ],
     "authors": [
         {
             "name": "Allan Chappell",
