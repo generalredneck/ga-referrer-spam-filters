@@ -1,5 +1,7 @@
 # Google Analytics Referrer Spam Filter Tool
 
+![Build Status](http://generalredneck.com:8888/buildStatus/icon?job=GaRefSpam Build)
+
 A console script written to create filters on your Google Analytics account so
 that you can filter out all those unwanted Referrer Spam Bots.
 
@@ -10,6 +12,13 @@ The script is built using Symfony2's Console component and has a list of several
 commands that can be used to help you.
 
 ## Installation
+
+This project requires PHP 5. It hasn't been tested with PHP 7. It has been
+tested on Windows 10.
+
+### Manual Install
+
+### Composer
 
 Installation requires that you download [Composer](https://getcomposer.org/), as
 you need some of the components that come with that. After downloading Composer,
