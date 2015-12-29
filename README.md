@@ -109,9 +109,10 @@ web properties, and/or views you want to work with.
 
 The global switches are:
 
-* `-e, --service-email[=SERVICE-EMAIL]` - The service email to use to connect to
-* `-Google Analytics k, --key-location[=KEY-LOCATION]` - The p12 key file used
-* `-to connect to Google Analytics
+* `-e, --service-email[=SERVICE-EMAIL]` - The service email 
+  to use to connect to Google Analytics
+* `-k, --key-location[=KEY-LOCATION]` - The p12 key file used 
+  to connect to Google Analytics
 
 Use `garefspam` to get a list of commands you can run using this tool and the
 expected switches. An example of this output is as follows:
@@ -194,3 +195,9 @@ A sample session may look like so:
 ## FAQ
 
 To come.
+
+## Credit
+
+The source of the referral spam domains blacklist is the [desbma/referer-spam-domains-blacklist][credit-1] project. Ultimatly that project is what lead me to the solution I created and should totally be a part of your infrastructure to help keep the referral bots out of your analytics and off your server period.
+
+[credit-1]: https://github.com/desbma/referer-spam-domains-blacklist
